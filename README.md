@@ -1,54 +1,118 @@
-# Library Management System Backend
-
-This project implements a REST API for a Library Management System using Node.js, Express.js, MongoDB, Mongoose, JWT Authentication, and bcrypt.
-
+# Library Management System (Backend)
+A RESTful backend application developed using **Node.js**, **Express.js**, **MongoDB**, and
+**Mongoose** following the **MVC Architecture**. The project includes user authentication, rolebased authorization, and complete CRUD operations for managing library books.
+---
 ## Features
-- User registration and login
-- JWT-based authentication
-- Admin-only book management
-- CRUD operations for books
-- Validation for required fields and duplicate ISBN/email
-- Proper HTTP status codes
+### Authentication
+- User Registration
+- User Login
+- Password Hashing using bcrypt
+- JWT Authentication
+- Role-Based Authorization (Admin/User)
+### Book Management
+- Add Book (Admin)
+- Update Book (Admin)
+- Delete Book (Admin)
+- View All Books
+- View Single Book
+### Validation
+- Required Field Validation
+- Duplicate Email Validation
+- Duplicate ISBN Validation
+- Proper Error Handling
+- HTTP Status Codes
+---
+## Technologies Used
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT (JSON Web Token)
+- bcrypt
+- dotenv
+---
+## Project Structure
+```
+Library-Management-System/
+│
 
-## Setup
-1. Install dependencies:
-   npm install
-2. Create a .env file using .env.example.
-3. Start the server:
-   npm start
+├── config/
+│ └── db.js
+│
 
+├── controllers/
+│ ├── authController.js
+│ └── bookController.js
+│
+
+├── middleware/
+│ ├── authMiddleware.js
+│ └── adminMiddleware.js
+│
+
+├── models/
+│ ├── User.js
+│ └── Book.js
+│
+
+├── routes/
+│ ├── authRoutes.js
+│ └── bookRoutes.js
+│
+
+├── .env
+├── package.json
+├── server.js
+└── README.md
+```
+---
+## Installation
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+```
+### 2. Install Dependencies
+```bash
+npm install
+```
+### 3. Configure Environment Variables
+Create a `.env` file.
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+### 4. Start the Server
+```bash
+npm run dev
+```
+---
 ## API Endpoints
-### Auth
-- POST /api/auth/register
-- POST /api/auth/login
-
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/auth/register | Register a new user |
+| POST | /api/auth/login | Login user |
 ### Books
-- GET /api/books
-- GET /api/books/:id
-- POST /api/books (Admin only)
-- PUT /api/books/:id (Admin only)
-- DELETE /api/books/:id (Admin only)
-
-## Example Request Bodies
-### Register
-{
-  "username": "admin",
-  "email": "admin@example.com",
-  "password": "123456",
-  "role": "admin"
-}
-
-### Login
-{
-  "email": "admin@example.com",
-  "password": "123456"
-}
-
-### Add Book
-{
-  "title": "The Hobbit",
-  "author": "J.R.R. Tolkien",
-  "category": "Fantasy",
-  "isbn": "9780261102217",
-  "availableCopies": 5
-}
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/books | Get all books |
+| GET | /api/books/:id | Get single book |
+| POST | /api/books | Add a new book (Admin) |
+| PUT | /api/books/:id | Update a book (Admin) |
+| DELETE | /api/books/:id | Delete a book (Admin) |
+---
+## HTTP Status Codes
+- 200 – Success
+- 201 – Created
+- 400 – Bad Request
+- 401 – Unauthorized
+- 403 – Forbidden
+- 404 – Not Found
+- 500 – Internal Server Error
+---
+## API Testing
+Use **Thunder Client** or **Postman** to test all endpoints.
+---
+## Author
+Backend Practice Project – Library Management system
